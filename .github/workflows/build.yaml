@@ -61,11 +61,11 @@ jobs:
         run: |
           pip install -U -r Testing/gh/requirements.txt
 
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
-        with:
-          languages: cpp
-          queries: security-and-quality
+      # - name: Initialize CodeQL
+      #   uses: github/codeql-action/init@v2
+      #   with:
+      #     languages: cpp
+      #     queries: security-and-quality
 
       - name: Install Build tools with ARM Gnu toolchain,  packs install and start builds
         working-directory: ./Testing
@@ -99,16 +99,17 @@ jobs:
           echo $CMSIS_PACK_ROOT
 
 
-          wget https://developer.arm.com/-/media/Files/downloads/gnu/12.2.mpacbti-rel1/binrel/arm-gnu-toolchain-12.2.mpacbti-rel1-x86_64-arm-none-eabi.tar.xz
-          tar -xf arm-gnu-toolchain-12.2.mpacbti-rel1-x86_64-arm-none-eabi.tar.xz
-          echo copy GCC cmake
-          cp cmsis-toolbox-linux-amd64/etc/GCC.10.3.1.cmake cmsis-toolbox-linux-amd64/etc/GCC.12.2.1.cmake  
-          GNUTOOLSPATH=$TOP/arm-gnu-toolchain-12.2.mpacbti-rel1-x86_64-arm-none-eabi/bin
-          ls $GNUTOOLSPATH
-          sed -i -e "/^set(TOOLCHAIN_ROOT.*/c\set(TOOLCHAIN_ROOT "${GNUTOOLSPATH}")" cmsis-toolbox-linux-amd64/etc/GCC.12.2.1.cmake 
-          sed -i -e '/^set(TOOLCHAIN_VERSION.*/c\set(TOOLCHAIN_VERSION "12.2.1")' cmsis-toolbox-linux-amd64/etc/GCC.12.2.1.cmake 
+          # wget https://developer.arm.com/-/media/Files/downloads/gnu/12.2.mpacbti-rel1/binrel/arm-gnu-toolchain-12.2.mpacbti-rel1-x86_64-arm-none-eabi.tar.xz
+          # tar -xf arm-gnu-toolchain-12.2.mpacbti-rel1-x86_64-arm-none-eabi.tar.xz
+          # echo copy GCC cmake
+          # cp cmsis-toolbox-linux-amd64/etc/GCC.10.3.1.cmake cmsis-toolbox-linux-amd64/etc/GCC.12.2.1.cmake  
+          # GNUTOOLSPATH=$TOP/arm-gnu-toolchain-12.2.mpacbti-rel1-x86_64-arm-none-eabi/bin
+          # ls $GNUTOOLSPATH
+          # sed -i -e "/^set(TOOLCHAIN_ROOT.*/c\set(TOOLCHAIN_ROOT "${GNUTOOLSPATH}")" cmsis-toolbox-linux-amd64/etc/GCC.12.2.1.cmake 
+          # sed -i -e '/^set(TOOLCHAIN_VERSION.*/c\set(TOOLCHAIN_VERSION "12.2.1")' cmsis-toolbox-linux-amd64/etc/GCC.12.2.1.cmake 
 
-          $GNUTOOLSPATH/arm-none-eabi-gcc -v
+          # $GNUTOOLSPATH/arm-none-eabi-gcc -v
+          
           popd
 
           echo "cpackget : $(which cpackget)"
@@ -122,13 +123,17 @@ jobs:
 
           cpackget update-index 
           
-          /bin/sh createDefaultFolder.sh
+          ./createDefaultFolder.sh
 
+          echo Preprocess
           python preprocess.py -f desc.txt -o Output.pickle
           python preprocess.py  -f desc_f16.txt -o Output_f16.pickle
+          
+          echo Process
           python processTests.py -e
           python processTests.py -e -f Output_f16.pickle
 
+          echo cmsis build
           pushd cmsis_build
 
       #     csolution list packs -s arm2d.csolution.yml -m > required_packs.txt
