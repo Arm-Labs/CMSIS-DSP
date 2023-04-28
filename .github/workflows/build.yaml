@@ -59,7 +59,7 @@ jobs:
 
       - name: Install Python requirements
         run: |
-          pip install -U -r test/requirements.txt
+          pip install -U -r Testing/gh/requirements.txt
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
