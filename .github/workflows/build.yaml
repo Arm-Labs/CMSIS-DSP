@@ -67,64 +67,69 @@ jobs:
           languages: cpp
           queries: security-and-quality
 
-      # - name: Install Build tools with ARM Gnu toolchain,  packs install and start builds
-      #   working-directory: ./test
-      #   run: |
+      - name: Install Build tools with ARM Gnu toolchain,  packs install and start builds
+        working-directory: ./Testing
+        run: |
         
-      #     . <(curl https://aka.ms/vcpkg-init.sh -L)
-      #     vcpkg activate
+          . <(curl https://aka.ms/vcpkg-init.sh -L)
+          vcpkg activate
 
       
-      #     mkdir ~/cmsis
-      #     pushd ~/cmsis
-      #     TOP=`pwd`
-      #     echo "TOP is : "
-      #     echo $TOP
+          mkdir ~/cmsis
+          pushd ~/cmsis
+          TOP=`pwd`
+          echo "TOP is : "
+          echo $TOP
           
-      #     wget https://github.com/Open-CMSIS-Pack/cmsis-toolbox/releases/download/1.5.0/cmsis-toolbox-linux-amd64.tar.gz
-      #     tar -zxvf  cmsis-toolbox-linux-amd64.tar.gz 
-      #     sed -i -e '/^set(TOOLCHAIN_ROOT.*/c\set(TOOLCHAIN_ROOT "/opt/armcompiler/bin")' cmsis-toolbox-linux-amd64/etc/AC6.6.18.0.cmake 
-      #     cat cmsis-toolbox-linux-amd64/etc/AC6.6.18.0.cmake
+          wget https://github.com/Open-CMSIS-Pack/cmsis-toolbox/releases/download/1.5.0/cmsis-toolbox-linux-amd64.tar.gz
+          tar -zxvf  cmsis-toolbox-linux-amd64.tar.gz 
+          sed -i -e '/^set(TOOLCHAIN_ROOT.*/c\set(TOOLCHAIN_ROOT "/opt/armcompiler/bin")' cmsis-toolbox-linux-amd64/etc/AC6.6.18.0.cmake 
+          cat cmsis-toolbox-linux-amd64/etc/AC6.6.18.0.cmake
           
-      #     export PATH=$PATH:$TOP/cmsis-toolbox-linux-amd64/bin/
-      #     echo $PATH
+          export PATH=$PATH:$TOP/cmsis-toolbox-linux-amd64/bin/
+          echo $PATH
 
-      #     export CMSIS_COMPILER_ROOT=$TOP/cmsis-toolbox-linux-amd64/etc/
-      #     export CMSIS_PACK_ROOT=$TOP/cmsis-pack
+          export CMSIS_COMPILER_ROOT=$TOP/cmsis-toolbox-linux-amd64/etc/
+          export CMSIS_PACK_ROOT=$TOP/cmsis-pack
 
-      #     echo "CMSIS_COMPILER_ROOT is : "
-      #     echo $CMSIS_COMPILER_ROOT
+          echo "CMSIS_COMPILER_ROOT is : "
+          echo $CMSIS_COMPILER_ROOT
 
-      #     echo "CMSIS_PACK_ROOT is : "
-      #     echo $CMSIS_PACK_ROOT
+          echo "CMSIS_PACK_ROOT is : "
+          echo $CMSIS_PACK_ROOT
 
 
-      #     wget https://developer.arm.com/-/media/Files/downloads/gnu/12.2.mpacbti-rel1/binrel/arm-gnu-toolchain-12.2.mpacbti-rel1-x86_64-arm-none-eabi.tar.xz
-      #     tar -xf arm-gnu-toolchain-12.2.mpacbti-rel1-x86_64-arm-none-eabi.tar.xz
-      #     echo copy GCC cmake
-      #     cp cmsis-toolbox-linux-amd64/etc/GCC.10.3.1.cmake cmsis-toolbox-linux-amd64/etc/GCC.12.2.1.cmake  
-      #     GNUTOOLSPATH=$TOP/arm-gnu-toolchain-12.2.mpacbti-rel1-x86_64-arm-none-eabi/bin
-      #     ls $GNUTOOLSPATH
-      #     sed -i -e "/^set(TOOLCHAIN_ROOT.*/c\set(TOOLCHAIN_ROOT "${GNUTOOLSPATH}")" cmsis-toolbox-linux-amd64/etc/GCC.12.2.1.cmake 
-      #     sed -i -e '/^set(TOOLCHAIN_VERSION.*/c\set(TOOLCHAIN_VERSION "12.2.1")' cmsis-toolbox-linux-amd64/etc/GCC.12.2.1.cmake 
+          wget https://developer.arm.com/-/media/Files/downloads/gnu/12.2.mpacbti-rel1/binrel/arm-gnu-toolchain-12.2.mpacbti-rel1-x86_64-arm-none-eabi.tar.xz
+          tar -xf arm-gnu-toolchain-12.2.mpacbti-rel1-x86_64-arm-none-eabi.tar.xz
+          echo copy GCC cmake
+          cp cmsis-toolbox-linux-amd64/etc/GCC.10.3.1.cmake cmsis-toolbox-linux-amd64/etc/GCC.12.2.1.cmake  
+          GNUTOOLSPATH=$TOP/arm-gnu-toolchain-12.2.mpacbti-rel1-x86_64-arm-none-eabi/bin
+          ls $GNUTOOLSPATH
+          sed -i -e "/^set(TOOLCHAIN_ROOT.*/c\set(TOOLCHAIN_ROOT "${GNUTOOLSPATH}")" cmsis-toolbox-linux-amd64/etc/GCC.12.2.1.cmake 
+          sed -i -e '/^set(TOOLCHAIN_VERSION.*/c\set(TOOLCHAIN_VERSION "12.2.1")' cmsis-toolbox-linux-amd64/etc/GCC.12.2.1.cmake 
 
-      #     $GNUTOOLSPATH/arm-none-eabi-gcc -v
-      #     popd
+          $GNUTOOLSPATH/arm-none-eabi-gcc -v
+          popd
 
-      #     echo "cpackget : $(which cpackget)"
-      #     echo "csolution: $(which csolution)"
-      #     echo "cbuild   : $(which cbuild)"
-      #     echo "codeql   : $(which codeql)"
+          echo "cpackget : $(which cpackget)"
+          echo "csolution: $(which csolution)"
+          echo "cbuild   : $(which cbuild)"
+          echo "codeql   : $(which codeql)"
 
-      #     cpackget init https://www.keil.com/pack/index.pidx
+          cpackget init https://www.keil.com/pack/index.pidx
           
-      #     echo cpackget update-index 
+          echo cpackget update-index 
 
-      #     cpackget update-index 
+          cpackget update-index 
           
-      #     echo cpackget add --agree-embedded-license https://github.com/GorgonMeducer/perf_counter/raw/main/cmsis-pack/GorgonMeducer.perf_counter.1.9.10.pack
+          /bin/sh createDefaultFolder.sh
 
-      #     cpackget add --agree-embedded-license  https://github.com/GorgonMeducer/perf_counter/raw/659eb12026977d81391d90290706f9ac3c8efe7e/cmsis-pack/GorgonMeducer.perf_counter.1.9.11.pack
+          python preprocess.py -f desc.txt -o Output.pickle
+          python preprocess.py  -f desc_f16.txt -o Output_f16.pickle
+          python processTests.py -e
+          python processTests.py -e -f Output_f16.pickle
+
+          pushd cmsis_build
 
       #     csolution list packs -s arm2d.csolution.yml -m > required_packs.txt
       #     test -s required_packs.txt && cpackget add -a -f required_packs.txt || echo "Nothing to install"
