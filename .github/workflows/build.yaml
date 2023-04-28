@@ -143,6 +143,11 @@ jobs:
 
 
 
+          echo "${{env.AVH_PATH}}" >> $GITHUB_PATH
+
+          python runall.py -avh /opt/VHT/ -d
+
+          cat summary.html
 
       #     csolution list packs -s arm2d.csolution.yml -m > required_packs.txt
       #     test -s required_packs.txt && cpackget add -a -f required_packs.txt || echo "Nothing to install"
@@ -166,14 +171,14 @@ jobs:
       # - name: Perform CodeQL Analysis
       #   uses: github/codeql-action/analyze@v2
 
-      - name: Run Arm2D apps on different VHT's
-        working-directory: ./Testing/cmsis_build    
-        run: |
-           echo "${{env.AVH_PATH}}" >> $GITHUB_PATH
+      # - name: Run Arm2D apps on different VHT's
+      #   working-directory: ./Testing/cmsis_build    
+      #   run: |
+      #      echo "${{env.AVH_PATH}}" >> $GITHUB_PATH
 
-           python runall.py -avh /opt/VHT/ -d
+      #      python runall.py -avh /opt/VHT/ -d
 
-           cat summary.html
+      #      cat summary.html
 
       #      echo run CM0plus
       #      /opt/VHT/VHT_MPS2_Cortex-M0plus  ./arm2d_generic.Release+VHT_M0Plus-AC6/outdir/Release+VHT_M0Plus.axf -f model_config_cm0plus.txt --stat $*
