@@ -167,7 +167,7 @@ jobs:
       #   uses: github/codeql-action/analyze@v2
 
       - name: Run Arm2D apps on different VHT's
-        working-directory: ./test      
+        working-directory: ./Testing/cmsis_build    
         run: |
            echo "${{env.AVH_PATH}}" >> $GITHUB_PATH
 
