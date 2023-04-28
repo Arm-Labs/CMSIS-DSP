@@ -111,19 +111,18 @@ configFiles={
     "M0plus":"ARM_VHT_MPS2_M0plus_config.txt",
 }
 
-# Windows executable
-# (At some point this script will also support
-# unix)
+# Linux executable
+
 avhExe={
-    "CS310":"VHT_Corstone_SSE-310.exe",
-    "CS300":"VHT_Corstone_SSE-300_Ethos-U55.exe",
-    "M55":"VHT_MPS2_Cortex-M55.exe",
-    "M33_DSP_FP":"VHT_MPS2_Cortex-M33.exe",
-    "M7DP":"VHT_MPS2_Cortex-M7.exe",
-    "M4FP":"VHT_MPS2_Cortex-M4.exe",
-    "M3":"VHT_MPS2_Cortex-M3.exe",
-    "M23":"VHT_MPS2_Cortex-M23.exe",
-    "M0plus":"VHT_MPS2_Cortex-M0plus.exe",
+    "CS310":"VHT_Corstone_SSE-310",
+    "CS300":"VHT_Corstone_SSE-300_Ethos-U55",
+    "M55":"VHT_MPS2_Cortex-M55",
+    "M33_DSP_FP":"VHT_MPS2_Cortex-M33",
+    "M7DP":"VHT_MPS2_Cortex-M7",
+    "M4FP":"VHT_MPS2_Cortex-M4",
+    "M3":"VHT_MPS2_Cortex-M3",
+    "M23":"VHT_MPS2_Cortex-M23",
+    "M0plus":"VHT_MPS2_Cortex-M0plus",
 }
 
 AVHROOT = args.avh
@@ -158,7 +157,8 @@ for t in tests:
     allSuites += [(x,t) for x in suites ]
 
 # Test suite and output pickle needed to decode the result
-#print(allSuites)
+print(allSuites)
+
 
 #allSuites=[("ComplexTestsF32","../Output.pickle"),
 #("DistanceTestsF32","../Output.pickle"),
@@ -194,27 +194,26 @@ for t in tests:
 # It is a pair : csolution target type and AVH identification
 # AVH identification is used to find the executable
 # and the configuration file
+
 solutions={
     'testac6.csolution.yml':[
-    #  ("VHT-Corstone-310","CS310"),
-      ("VHT-Corstone-300","CS300"),
-    #  #("VHT_M33","M33_DSP_FP"),
-      ("VHT_M7","M7DP"),
-      ("VHT_M7_UNROLLED","M7DP"),
-    #  #("VHT_M4","M4FP"),
-    #  #("VHT_M3","M3"),
-    #  #("VHT_M23","M23"),
+      #("VHT-Corstone-310","CS310"),
+      #("VHT-Corstone-300","CS300"),
+      ("VHT_M33","M33_DSP_FP"),
+      #("VHT_M7","M7DP"),
+      #("VHT_M4","M4FP"),
+      #("VHT_M3","M3"),
+      #("VHT_M23","M23"),
       ("VHT_M0P","M0plus")
     ],
     'testgcc.csolution.yml':[
       #("VHT-Corstone-310","CS310"),
       #("VHT_M55","M55"),
-      ##("VHT_M33","M33_DSP_FP"),
-      ("VHT_M7","M7DP"),
-      ("VHT_M7_UNROLLED","M7DP"),
-      ##("VHT_M4","M4FP"),
-      ##("VHT_M3","M3"),
-      ##("VHT_M23","M23"),
+      ("VHT_M33","M33_DSP_FP"),
+      #("VHT_M7","M7DP"),
+      #("VHT_M4","M4FP"),
+      #("VHT_M3","M3"),
+      #("VHT_M23","M23"),
       ("VHT_M0P","M0plus")
     ]
 }

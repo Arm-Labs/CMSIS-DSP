@@ -8,7 +8,7 @@ solution:
       - -std=c11 
       - -Ofast 
       - -ffast-math  
-      - -flax-vector-conversions
+
     - CPP:
       - -ffunction-sections 
       - -mfp16-format=ieee 
@@ -49,11 +49,21 @@ solution:
       device: ARM::SSE-310-MPS3
       defines:
         - CORTEXM
+      misc:
+        - C:
+          - -flax-vector-conversions     
+        - CPP:
+          - -flax-vector-conversions  
 
     - type: VHT_M55
       device: ARMCM55
       defines:
         - CORTEXM
+      misc:
+        - C:
+          - -flax-vector-conversions     
+        - CPP:
+          - -flax-vector-conversions     
 
     - type: VHT_M33
       device: ARMCM33_DSP_FP
