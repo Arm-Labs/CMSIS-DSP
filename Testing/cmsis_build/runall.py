@@ -197,23 +197,23 @@ print(allSuites)
 
 solutions={
     'testac6.csolution.yml':[
-      #("VHT-Corstone-310","CS310"),
-      #("VHT-Corstone-300","CS300"),
+      ("VHT-Corstone-310","CS310"),
+      ("VHT-Corstone-300","CS300"),
       ("VHT_M33","M33_DSP_FP"),
-      #("VHT_M7","M7DP"),
-      #("VHT_M4","M4FP"),
-      #("VHT_M3","M3"),
-      #("VHT_M23","M23"),
+      ("VHT_M7","M7DP"),
+      ("VHT_M4","M4FP"),
+      ("VHT_M3","M3"),
+      ("VHT_M23","M23"),
       ("VHT_M0P","M0plus")
     ],
     'testgcc.csolution.yml':[
       #("VHT-Corstone-310","CS310"),
-      #("VHT_M55","M55"),
+      ("VHT_M55","M55"),
       ("VHT_M33","M33_DSP_FP"),
-      #("VHT_M7","M7DP"),
-      #("VHT_M4","M4FP"),
-      #("VHT_M3","M3"),
-      #("VHT_M23","M23"),
+      ("VHT_M7","M7DP"),
+      ("VHT_M4","M4FP"),
+      ("VHT_M3","M3"),
+      ("VHT_M23","M23"),
       ("VHT_M0P","M0plus")
     ]
 }
