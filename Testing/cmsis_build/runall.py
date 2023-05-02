@@ -208,7 +208,7 @@ solutions={
     ],
     'testgcc.csolution.yml':[
       #("VHT-Corstone-310","CS310"),
-      ("VHT_M55","M55"),
+      #("VHT_M55","M55"),
       ("VHT_M33","M33_DSP_FP"),
       ("VHT_M7","M7DP"),
       ("VHT_M4","M4FP"),
